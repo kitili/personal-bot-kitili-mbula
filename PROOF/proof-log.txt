@@ -1,0 +1,5 @@
+[2026-07-09T08:40:59+03:00] trigger=skill output=/home/kiki/personal-bot-kitili-mbula/log/2026-07-09-wrapup.md
+[2026-07-09T08:40:59+03:00] trigger=loop output=/home/kiki/personal-bot-kitili-mbula/log/2026-07-09-wrapup.md
+[2026-07-09T08:41:00+03:00] trigger=hook output=/home/kiki/personal-bot-kitili-mbula/log/2026-07-09-wrapup.md
+[2026-07-09T08:41:48+03:00] trigger=skill output=/home/kiki/personal-bot-kitili-mbula/log/2026-07-09-wrapup.md
+[2026-07-09T08:42:36+03:00] trigger=skill output=/home/kiki/personal-bot-kitili-mbula/log/2026-07-09-wrapup.md

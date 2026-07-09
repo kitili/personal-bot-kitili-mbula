@@ -1,5 +1,4 @@
-notes/
-log/20*.md
-PROOF/proof-log.txt
+notes/*
+!notes/2026-07-09.md
 .env
 .DS_Store

@@ -1,0 +1,5 @@
+notes/
+log/20*.md
+PROOF/proof-log.txt
+.env
+.DS_Store

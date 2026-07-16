@@ -60,13 +60,13 @@ logoutBtn.addEventListener("click", async () => {
 runBtn.addEventListener("click", async () => {
   const input = inputEl.value.trim();
   if (!input) {
-    outputEl.textContent = "Please paste some notes first.";
+    outputEl.textContent = "Paste a few notes first, pretty please 💕";
     return;
   }
 
   runBtn.disabled = true;
-  statusEl.textContent = "Running…";
-  outputEl.textContent = "Working…";
+  statusEl.textContent = "Sparkling…";
+  outputEl.textContent = "Wrapping up your day…";
 
   try {
     const res = await fetch("/api/run", {
@@ -87,7 +87,8 @@ runBtn.addEventListener("click", async () => {
       return;
     }
     outputEl.textContent = data.output || "(empty response)";
-    statusEl.textContent = data.mode === "ai-polished" ? "AI polish on" : "Local wrap-up";
+    statusEl.textContent =
+      data.mode === "ai-polished" ? "✨ AI polish on" : "💗 Local wrap-up";
   } catch (err) {
     outputEl.textContent = "Network error — is the server running?";
     statusEl.textContent = "";

@@ -4,16 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kitili Personal Bot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
+    <div class="bloom bloom-a" aria-hidden="true"></div>
+    <div class="bloom bloom-b" aria-hidden="true"></div>
+    <div class="bloom bloom-c" aria-hidden="true"></div>
+
     <div id="login-view" class="screen hidden">
-      <form id="login-form" class="card login-card">
-        <h1>Kitili Personal Bot</h1>
-        <p class="muted">Sign in to run Daily Wrap-Up.</p>
+      <form id="login-form" class="card login-card float-in">
+        <p class="brand-mark">✦ kitili</p>
+        <h1>Welcome back, soft girl</h1>
+        <p class="muted">Sign in to open your Daily Wrap-Up bot.</p>
         <label>
           Username
-          <input id="username" name="username" autocomplete="username" required />
+          <input id="username" name="username" autocomplete="username" required placeholder="your cute alias" />
         </label>
         <label>
           Password
@@ -23,25 +34,27 @@
             type="password"
             autocomplete="current-password"
             required
+            placeholder="••••••••"
           />
         </label>
-        <button type="submit">Log in</button>
+        <button type="submit">Enter the glow ✨</button>
         <p id="login-error" class="error" role="alert"></p>
       </form>
     </div>
 
     <div id="bot-view" class="screen hidden">
-      <header class="top">
+      <header class="top float-in">
         <div>
-          <h1>Daily Wrap-Up Bot</h1>
-          <p class="muted">Paste today's notes, click Run, get Done / Doing / Next.</p>
+          <p class="brand-mark">✦ kitili's corner</p>
+          <h1>Daily Wrap-Up</h1>
+          <p class="muted">Paste today's notes — I'll tidy them into Done, Doing &amp; Next.</p>
         </div>
         <button id="logout-btn" type="button" class="ghost">Log out</button>
       </header>
 
-      <main class="card bot-card">
+      <main class="card bot-card float-in delay">
         <label>
-          Your notes / input
+          Your notes
           <textarea
             id="input"
             rows="10"
@@ -49,12 +62,12 @@
           ></textarea>
         </label>
         <div class="row">
-          <button id="run-btn" type="button">Run</button>
-          <span id="status" class="muted"></span>
+          <button id="run-btn" type="button">Run wrap-up 💕</button>
+          <span id="status" class="pill muted"></span>
         </div>
         <label>
           Bot output
-          <pre id="output" class="output" aria-live="polite">Waiting for input…</pre>
+          <pre id="output" class="output" aria-live="polite">Waiting for your notes, babe…</pre>
         </label>
       </main>
     </div>

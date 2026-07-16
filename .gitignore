@@ -1,7 +1,8 @@
-notes/*
-!notes/2026-07-09.md
+node_modules/
 .env
 .DS_Store
+notes/*
+!notes/2026-07-09.md
 
-# Local Netlify folder
+# Local Netlify folder (legacy static deploy)
 .netlify

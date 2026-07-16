@@ -3,88 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kitili Mbula — Personal Bot</title>
-    <style>
-      :root {
-        --ink: #1a2332;
-        --muted: #5a6a7a;
-        --accent: #0d5c4b;
-        --bg: #f3f6f4;
-        --card: #ffffff;
-      }
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        min-height: 100vh;
-        font-family: "Segoe UI", system-ui, sans-serif;
-        color: var(--ink);
-        background:
-          radial-gradient(ellipse at top left, #d8ebe4 0%, transparent 45%),
-          radial-gradient(ellipse at bottom right, #e8eef5 0%, transparent 50%),
-          var(--bg);
-        display: grid;
-        place-items: center;
-        padding: 2rem 1.25rem;
-      }
-      main {
-        width: min(640px, 100%);
-        background: var(--card);
-        border: 1px solid #d5e0da;
-        border-radius: 16px;
-        padding: 2rem 1.75rem;
-        box-shadow: 0 12px 40px rgba(26, 35, 50, 0.08);
-      }
-      h1 {
-        margin: 0 0 0.35rem;
-        font-size: 1.75rem;
-        letter-spacing: -0.02em;
-      }
-      .sub {
-        color: var(--muted);
-        margin: 0 0 1.5rem;
-        line-height: 1.5;
-      }
-      ul {
-        margin: 0 0 1.5rem;
-        padding-left: 1.2rem;
-        line-height: 1.7;
-      }
-      a {
-        color: var(--accent);
-        font-weight: 600;
-        text-decoration: none;
-      }
-      a:hover { text-decoration: underline; }
-      .links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem 1.25rem;
-      }
-      footer {
-        margin-top: 1.75rem;
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
-    </style>
+    <title>Kitili Personal Bot</title>
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <main>
-      <h1>Kitili's Personal Bot</h1>
-      <p class="sub">
-        Claude Code personal bot with a Daily Wrap-Up skill, weekday 6pm loop,
-        and a hook that runs when notes are saved.
-      </p>
-      <ul>
-        <li>Skill — <code>.claude/skills/daily-wrap-up/SKILL.md</code></li>
-        <li>Loop — weekday 18:00 wrap-up</li>
-        <li>Hook — fires on notes save</li>
-        <li>Proof — <code>PROOF/</code> artifacts in the repo</li>
-      </ul>
-      <div class="links">
-        <a href="https://github.com/kitili/personal-bot-kitili-mbula">GitHub repository</a>
-        <a href="https://github.com/kitili/personal-bot-kitili-mbula/blob/main/README.md">README</a>
-      </div>
-      <footer>Author: Kitili Mbula · Module 6 / M08 deploy</footer>
-    </main>
+    <div id="login-view" class="screen hidden">
+      <form id="login-form" class="card login-card">
+        <h1>Kitili Personal Bot</h1>
+        <p class="muted">Sign in to run Daily Wrap-Up.</p>
+        <label>
+          Username
+          <input id="username" name="username" autocomplete="username" required />
+        </label>
+        <label>
+          Password
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+        </label>
+        <button type="submit">Log in</button>
+        <p id="login-error" class="error" role="alert"></p>
+      </form>
+    </div>
+
+    <div id="bot-view" class="screen hidden">
+      <header class="top">
+        <div>
+          <h1>Daily Wrap-Up Bot</h1>
+          <p class="muted">Paste today's notes, click Run, get Done / Doing / Next.</p>
+        </div>
+        <button id="logout-btn" type="button" class="ghost">Log out</button>
+      </header>
+
+      <main class="card bot-card">
+        <label>
+          Your notes / input
+          <textarea
+            id="input"
+            rows="10"
+            placeholder="## Done&#10;- Finished Module 6 proof&#10;&#10;## Doing&#10;- Deploy personal bot&#10;&#10;## Next&#10;- Submit LMS form"
+          ></textarea>
+        </label>
+        <div class="row">
+          <button id="run-btn" type="button">Run</button>
+          <span id="status" class="muted"></span>
+        </div>
+        <label>
+          Bot output
+          <pre id="output" class="output" aria-live="polite">Waiting for input…</pre>
+        </label>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
   </body>
 </html>

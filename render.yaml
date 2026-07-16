@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: personal-bot-kitili-mbula
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: APP_USERNAME
+        sync: false
+      - key: APP_PASSWORD
+        sync: false
+      - key: API_KEY
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true

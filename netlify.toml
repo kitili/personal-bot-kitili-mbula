@@ -1,6 +1,13 @@
 [build]
+  command = "npm install"
   publish = "public"
-  command = "echo 'Static personal-bot site'"
+  functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "20"
+  NODE_ENV = "production"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200

@@ -1,0 +1,19 @@
+{
+  "name": "personal-bot-kitili-mbula",
+  "version": "1.0.0",
+  "description": "Kitili Mbula personal bot — Daily Wrap-Up web UI with login",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cookie-session": "^2.1.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "serverless-http": "^4.0.0"
+  }
+}

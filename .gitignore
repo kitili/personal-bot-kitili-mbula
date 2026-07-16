@@ -2,3 +2,6 @@ notes/*
 !notes/2026-07-09.md
 .env
 .DS_Store
+
+# Local Netlify folder
+.netlify

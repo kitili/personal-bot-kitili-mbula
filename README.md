@@ -2,6 +2,9 @@
 
 Claude Code personal bot with Daily Wrap-Up skill, loop (weekdays 6pm), and hook (on notes save).
 
+**Live URL:** https://personal-bot-kitili-mbula.netlify.app  
+**Repo:** https://github.com/kitili/personal-bot-kitili-mbula
+
 ## Module 6 Assessment
 
 | Component | Location |

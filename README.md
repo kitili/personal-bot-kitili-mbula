@@ -2,7 +2,7 @@
 
 Claude Code personal bot with Daily Wrap-Up skill, loop (weekdays 6pm), and hook (on notes save) — plus a **live web UI** with login.
 
-**Live URL:** _(set after Render deploy)_  
+**Live URL:** https://personal-bot-kitili-mbula.netlify.app  
 **Repo:** https://github.com/kitili/personal-bot-kitili-mbula
 
 ## Module 7 — Live bot (web)
@@ -27,20 +27,16 @@ Open http://localhost:3000 — log in, paste notes, click **Run**.
 
 `API_KEY` is read **only on the server**. The browser never sees it.
 
-### Deploy (Render)
+### Deploy (Netlify — current live host)
 
-1. Push this repo to GitHub.
-2. On [Render](https://render.com) → **New** → **Web Service** → connect this repo.
-3. Build: `npm install` · Start: `npm start` · Instance: Free.
-4. **Environment** tab — add:
-   - `APP_USERNAME`
-   - `APP_PASSWORD`
-   - `API_KEY` (optional — local wrap-up still works without it)
-   - `SESSION_SECRET` (any long random string)
-   - `NODE_ENV=production`
-5. Save (redeploys). Open the `*.onrender.com` URL.
+Hosted at the Live URL above. Secrets live in **Site configuration → Environment variables** (never in git):
 
-Or use the Blueprint: `render.yaml` → **New** → **Blueprint**.
+- `APP_USERNAME` / `APP_PASSWORD` — login gate
+- `SESSION_SECRET` — cookie signing
+- `API_KEY` — optional; paste your own OpenAI-compatible key for AI polish (server-side only)
+- `NODE_ENV=production`
+
+Optional alternate host: `render.yaml` for a Render Web Service (`npm start`).
 
 ## Module 6 Assessment
 

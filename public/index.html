@@ -3,75 +3,352 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kitili Personal Bot</title>
+    <meta name="theme-color" content="#ff6fae" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Kitili's Princess Palace Bot</title>
+    <meta
+      name="description"
+      content="Princess Palace — morning board, 5 to-dos, wrap-ups, focus timer, habits & sparkles."
+    />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/art/palace-castle.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&family=Great+Vibes&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <div class="bloom bloom-a" aria-hidden="true"></div>
-    <div class="bloom bloom-b" aria-hidden="true"></div>
-    <div class="bloom bloom-c" aria-hidden="true"></div>
+    <div class="sky" aria-hidden="true">
+      <span class="floaty star s1">✦</span>
+      <span class="floaty star s2">✧</span>
+      <span class="floaty heart h1">♥</span>
+      <span class="floaty heart h2">♡</span>
+      <span class="floaty star s3">★</span>
+    </div>
 
     <div id="login-view" class="screen hidden">
-      <form id="login-form" class="card login-card float-in">
-        <p class="brand-mark">✦ kitili</p>
-        <h1>Welcome back, soft girl</h1>
-        <p class="muted">Sign in to open your Daily Wrap-Up bot.</p>
-        <label>
-          Username
-          <input id="username" name="username" autocomplete="username" required placeholder="your cute alias" />
-        </label>
-        <label>
-          Password
-          <input
-            id="password"
-            name="password"
-            type="password"
-            autocomplete="current-password"
-            required
-            placeholder="••••••••"
-          />
-        </label>
-        <button type="submit">Enter the glow ✨</button>
-        <p id="login-error" class="error" role="alert"></p>
-      </form>
+      <div class="login-stage float-in">
+        <img class="mascot pony" src="/art/pony-princess.png" alt="" />
+        <img class="mascot doll" src="/art/princess-doll.png" alt="" />
+        <form id="login-form" class="panel login-panel">
+          <img class="castle-badge" src="/art/palace-castle.png" alt="" />
+          <p class="brand-script">Kitili's</p>
+          <h1>Princess Palace</h1>
+          <p class="muted">Sign in for your morning board, five to-dos &amp; wrap-ups.</p>
+          <label>
+            Username
+            <input id="username" name="username" autocomplete="username" required placeholder="your cute alias" />
+          </label>
+          <label>
+            Password
+            <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="••••••••" />
+          </label>
+          <button type="submit">Enter the palace ✨</button>
+          <p id="login-error" class="error" role="alert"></p>
+        </form>
+      </div>
     </div>
 
     <div id="bot-view" class="screen hidden">
-      <header class="top float-in">
-        <div>
-          <p class="brand-mark">✦ kitili's corner</p>
-          <h1>Daily Wrap-Up</h1>
-          <p class="muted">Paste today's notes — I'll tidy them into Done, Doing &amp; Next.</p>
+      <header class="palace-header float-in">
+        <div class="header-left">
+          <img class="header-art" src="/art/palace-castle.png" alt="" />
+          <div>
+            <p class="brand-script">Kitili's Princess Palace</p>
+            <h1>Command Center</h1>
+            <p class="muted">
+              Morning board → five to-dos → wrap-up.
+              <span id="today-label" class="date-chip"></span>
+            </p>
+          </div>
         </div>
-        <button id="logout-btn" type="button" class="ghost">Log out</button>
+        <div class="header-right">
+          <div class="sparkle-meter" title="Sparkle points">
+            <span class="sparkle-ico">✨</span>
+            <span id="sparkle-count">0</span>
+            <span class="sparkle-label">sparkles</span>
+          </div>
+          <button id="help-btn" type="button" class="ghost tiny" title="Shortcuts">?</button>
+          <button id="logout-btn" type="button" class="ghost">Log out</button>
+        </div>
       </header>
 
-      <main class="card bot-card float-in delay">
-        <label>
-          Your notes
-          <textarea
-            id="input"
-            rows="10"
-            placeholder="## Done&#10;- Finished Module 6 proof&#10;&#10;## Doing&#10;- Deploy personal bot&#10;&#10;## Next&#10;- Submit LMS form"
-          ></textarea>
-        </label>
-        <div class="row">
-          <button id="run-btn" type="button">Run wrap-up 💕</button>
-          <span id="status" class="pill muted"></span>
+      <div class="mission-bar float-in delay" id="mission-bar">
+        <div class="mission-stat">
+          <span class="mission-label">To-dos</span>
+          <strong id="mission-todos">0/5</strong>
         </div>
-        <label>
-          Bot output
-          <pre id="output" class="output" aria-live="polite">Waiting for your notes, babe…</pre>
-        </label>
-      </main>
+        <div class="mission-stat">
+          <span class="mission-label">Board</span>
+          <strong id="mission-board">Not sealed</strong>
+        </div>
+        <div class="mission-stat">
+          <span class="mission-label">Focus</span>
+          <strong id="mission-timer">25:00</strong>
+        </div>
+        <div class="mission-stat">
+          <span class="mission-label">Streak</span>
+          <strong id="mission-streak">0</strong>
+        </div>
+        <div class="mission-progress" aria-hidden="true">
+          <div id="mission-fill" class="mission-fill"></div>
+        </div>
+      </div>
+
+      <nav class="tabs float-in delay" role="tablist" aria-label="Palace rooms">
+        <button type="button" class="tab active" data-tab="home" role="tab">🏠 Home</button>
+        <button type="button" class="tab" data-tab="wrapup" role="tab">👑 Wrap-Up</button>
+        <button type="button" class="tab" data-tab="focus" role="tab">🎯 Focus</button>
+        <button type="button" class="tab" data-tab="habits" role="tab">💗 Habits</button>
+        <button type="button" class="tab" data-tab="mood" role="tab">🦄 Mood</button>
+        <button type="button" class="tab" data-tab="stickers" role="tab">🎀 Stickers</button>
+        <button type="button" class="tab" data-tab="history" role="tab">📖 Diary</button>
+        <button type="button" class="tab" data-tab="tools" role="tab">🛠️ Tools</button>
+      </nav>
+
+      <div class="layout">
+        <!-- HOME / MORNING BOARD -->
+        <section id="panel-home" class="panel room active float-in delay2" role="tabpanel">
+          <div class="room-head">
+            <img src="/art/princess-doll.png" alt="" class="room-mascot" />
+            <div>
+              <h2>Morning Board</h2>
+              <p class="muted">Every morning: what you want, how you're doing, and exactly five to-dos.</p>
+            </div>
+          </div>
+
+          <div class="board-grid">
+            <label class="board-field">
+              <span class="board-q">1. What do I want today?</span>
+              <textarea id="board-want" rows="3" placeholder="One clear desire — e.g. Ship the Netlify deploy and feel calm about Module 7."></textarea>
+            </label>
+
+            <div class="board-field">
+              <span class="board-q">2. How am I doing?</span>
+              <div class="mood-strip" id="board-moods" aria-label="How I'm doing"></div>
+              <textarea id="board-how" rows="2" placeholder="An honest check-in — tired but hopeful, sparkly, need soft focus…"></textarea>
+            </div>
+
+            <div class="board-field board-todos-wrap">
+              <div class="label-row">
+                <span class="board-q">3. My five to-dos</span>
+                <span id="board-todo-count" class="pill">0/5 filled</span>
+              </div>
+              <div id="board-todos" class="todo-list"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <button id="seal-board-btn" type="button">Seal morning board 👑</button>
+            <button id="carry-todos-btn" type="button" class="ghost">Carry open to-dos →</button>
+            <button id="send-wrapup-btn" type="button" class="ghost">Send board → Wrap-Up</button>
+            <span id="board-status" class="pill"></span>
+          </div>
+          <pre id="board-output" class="output">Your sealed morning board appears here…</pre>
+
+          <div class="home-widgets">
+            <article class="widget">
+              <h3>Quick capture</h3>
+              <p class="muted">Brain dump — later sort into to-dos or wrap-up.</p>
+              <textarea id="inbox-input" rows="3" placeholder="Random thought, link, reminder…"></textarea>
+              <div class="row">
+                <button id="inbox-add-btn" type="button" class="ghost">Pin to inbox</button>
+              </div>
+              <ul id="inbox-list" class="inbox-list"></ul>
+            </article>
+            <article class="widget">
+              <h3>Today's affirmation</h3>
+              <blockquote id="home-affirmation" class="affirm-card compact">Loading soft words…</blockquote>
+              <button id="home-affirm-btn" type="button" class="ghost tiny">New sparkle</button>
+            </article>
+          </div>
+        </section>
+
+        <!-- WRAP-UP -->
+        <section id="panel-wrapup" class="panel room float-in" role="tabpanel" hidden>
+          <div class="room-head">
+            <img src="/art/pony-princess.png" alt="" class="room-mascot" />
+            <div>
+              <h2>Daily Wrap-Up</h2>
+              <p class="muted">Paste notes — unfinished morning to-dos can auto-merge in.</p>
+            </div>
+          </div>
+          <div class="mood-strip" id="wrapup-moods" aria-label="Evening mood"></div>
+          <label class="check-inline">
+            <input type="checkbox" id="merge-board-check" checked />
+            Merge today's morning board into wrap-up
+          </label>
+          <div class="label-row">
+            <label for="input">Your notes</label>
+            <button id="sample-btn" type="button" class="ghost tiny">Load sample 🎀</button>
+          </div>
+          <textarea id="input" rows="9" placeholder="## Done&#10;- …&#10;&#10;## Doing&#10;- …&#10;&#10;## Next&#10;- …"></textarea>
+          <div class="row">
+            <button id="run-btn" type="button">Run wrap-up 💕</button>
+            <button id="clear-btn" type="button" class="ghost">Clear</button>
+            <span id="status" class="pill"></span>
+            <span class="hint muted">Ctrl/⌘ + Enter</span>
+          </div>
+          <div class="label-row">
+            <label for="output">Fairy output</label>
+            <button id="copy-btn" type="button" class="ghost tiny">Copy ✨</button>
+          </div>
+          <pre id="output" class="output" aria-live="polite">Waiting for your notes, princess…</pre>
+        </section>
+
+        <!-- FOCUS -->
+        <section id="panel-focus" class="panel room float-in" role="tabpanel" hidden>
+          <div class="room-head">
+            <img src="/art/pony-princess.png" alt="" class="room-mascot" />
+            <div>
+              <h2>Focus Timer</h2>
+              <p class="muted">25-minute princess sprints with a soft 5-minute glitter break.</p>
+            </div>
+          </div>
+          <div class="timer-stage">
+            <div id="timer-display" class="timer-display">25:00</div>
+            <p id="timer-mode" class="muted">Focus sprint</p>
+            <div class="row center">
+              <button id="timer-start-btn" type="button">Start</button>
+              <button id="timer-pause-btn" type="button" class="ghost">Pause</button>
+              <button id="timer-reset-btn" type="button" class="ghost">Reset</button>
+              <button id="timer-break-btn" type="button" class="ghost">Break 5:00</button>
+            </div>
+            <p class="muted">Completed sprints today: <strong id="timer-sessions">0</strong></p>
+          </div>
+        </section>
+
+        <!-- HABITS -->
+        <section id="panel-habits" class="panel room float-in" role="tabpanel" hidden>
+          <div class="room-head">
+            <img src="/art/princess-doll.png" alt="" class="room-mascot" />
+            <div>
+              <h2>Soft Habits</h2>
+              <p class="muted">Tiny daily rituals — tap to check off. Resets each EAT morning.</p>
+            </div>
+          </div>
+          <div id="habits-grid" class="habits-grid"></div>
+          <p id="habits-status" class="muted progress-line"></p>
+        </section>
+
+        <!-- MOOD -->
+        <section id="panel-mood" class="panel room float-in" role="tabpanel" hidden>
+          <div class="room-head">
+            <img src="/art/pony-princess.png" alt="" class="room-mascot" />
+            <div>
+              <h2>Mood Garden</h2>
+              <p class="muted">Pick today's vibe. Synced with your morning board mood.</p>
+            </div>
+          </div>
+          <div class="mood-grid" id="mood-garden"></div>
+          <div class="stats-row">
+            <div class="stat-tile pink">
+              <span class="stat-num" id="mood-today-emoji">✨</span>
+              <span class="stat-label">Today</span>
+            </div>
+            <div class="stat-tile yellow">
+              <span class="stat-num" id="mood-streak">0</span>
+              <span class="stat-label">Day streak</span>
+            </div>
+            <div class="stat-tile pink">
+              <span class="stat-num" id="mood-logged">0</span>
+              <span class="stat-label">Logged days</span>
+            </div>
+          </div>
+          <ul id="mood-timeline" class="timeline"></ul>
+        </section>
+
+        <!-- STICKERS -->
+        <section id="panel-stickers" class="panel room float-in" role="tabpanel" hidden>
+          <div class="room-head">
+            <img src="/art/princess-doll.png" alt="" class="room-mascot" />
+            <div>
+              <h2>Sticker Album</h2>
+              <p class="muted">Seal boards, run wrap-ups, finish habits — unlock stickers.</p>
+            </div>
+          </div>
+          <p id="sticker-progress" class="muted progress-line"></p>
+          <div class="sticker-grid" id="sticker-grid"></div>
+        </section>
+
+        <!-- HISTORY -->
+        <section id="panel-history" class="panel room float-in" role="tabpanel" hidden>
+          <div class="room-head">
+            <img src="/art/palace-castle.png" alt="" class="room-mascot" />
+            <div>
+              <h2>Princess Diary</h2>
+              <p class="muted">Boards, wrap-ups &amp; reviews — searchable on this device.</p>
+            </div>
+          </div>
+          <div class="row">
+            <input id="history-search" type="search" placeholder="Search diary…" class="search-input" />
+            <button id="weekly-btn" type="button" class="ghost">Weekly review</button>
+            <button id="export-btn" type="button" class="ghost">Export</button>
+            <button id="wipe-history-btn" type="button" class="ghost danger">Clear</button>
+          </div>
+          <div id="history-list" class="history-list"></div>
+        </section>
+
+        <!-- TOOLS -->
+        <section id="panel-tools" class="panel room float-in" role="tabpanel" hidden>
+          <div class="room-head">
+            <img src="/art/palace-castle.png" alt="" class="room-mascot" />
+            <div>
+              <h2>Palace Tools</h2>
+              <p class="muted">Backup, restore, install as app, live stats — technical power room.</p>
+            </div>
+          </div>
+          <div class="tools-grid">
+            <article class="widget">
+              <h3>Full backup</h3>
+              <p class="muted">Download everything (boards, moods, habits, diary, sparkles).</p>
+              <div class="row">
+                <button id="backup-btn" type="button">Download backup</button>
+                <label class="ghost file-btn">
+                  Restore
+                  <input id="restore-input" type="file" accept="application/json,.json" hidden />
+                </label>
+              </div>
+            </article>
+            <article class="widget">
+              <h3>Live stats</h3>
+              <pre id="stats-output" class="output compact">Tap refresh for palace stats…</pre>
+              <button id="stats-btn" type="button" class="ghost">Refresh stats</button>
+            </article>
+            <article class="widget">
+              <h3>Install / offline</h3>
+              <p class="muted">Add to home screen (PWA). Local data works offline after first visit.</p>
+              <button id="install-btn" type="button" class="ghost" hidden>Install palace app</button>
+              <p id="sw-status" class="muted">Service worker: checking…</p>
+            </article>
+            <article class="widget">
+              <h3>Keyboard shortcuts</h3>
+              <ul id="shortcuts-list" class="timeline"></ul>
+            </article>
+          </div>
+        </section>
+      </div>
     </div>
 
-    <script src="/app.js"></script>
+    <div id="help-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="help-title">
+      <div class="modal-card">
+        <h2 id="help-title">Palace shortcuts</h2>
+        <ul class="timeline">
+          <li><span>g then h</span><span>Home board</span></li>
+          <li><span>g then w</span><span>Wrap-Up</span></li>
+          <li><span>g then f</span><span>Focus timer</span></li>
+          <li><span>t</span><span>Start / pause timer</span></li>
+          <li><span>Ctrl/⌘ + Enter</span><span>Seal board / run wrap-up</span></li>
+          <li><span>?</span><span>Toggle this help</span></li>
+        </ul>
+        <button id="help-close" type="button" class="ghost">Close</button>
+      </div>
+    </div>
+
+    <div id="confetti" aria-hidden="true"></div>
+    <script src="/app.js?v=5"></script>
   </body>
 </html>

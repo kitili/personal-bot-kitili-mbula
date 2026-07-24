@@ -1,18 +1,23 @@
 # Kitili's Personal Bot
 
-Claude Code personal bot with Daily Wrap-Up skill, loop (weekdays 6pm), and hook (on notes save) — plus a **live web UI** with login.
+Claude Code personal bot with Daily Wrap-Up skill, loop (weekdays 6pm), and hook (on notes save) — plus a **live Princess Palace web UI** (pink & yellow, ponies, dolls, stickers).
 
 **Live URL:** https://personal-bot-kitili-mbula.netlify.app  
-**Repo:** https://github.com/kitili/personal-bot-kitili-mbula
+**Repo:** https://github.com/kitili/personal-bot-kitili-mbula  
+**Project blurb:** see [`PROJECT.md`](./PROJECT.md)
 
-## Module 7 — Live bot (web)
+## Princess Palace (web)
 
-| Piece | Location |
-|-------|----------|
-| Server | `server.js` |
-| Wrap-up logic | `lib/wrapup.js` (+ optional AI polish in `lib/ai.js`) |
-| UI | `public/` |
-| Secrets template | `.env.example` (real values only in `.env` / host env) |
+Rooms after login:
+
+| Room | What it does |
+|------|----------------|
+| Wrap-Up | Notes → Done / Doing / Next (+ evening mood) |
+| Morning | Seal a daily intention |
+| Mood | Mood garden + streak |
+| Stickers | Sparkle points unlock pony/doll/palace stickers |
+| Diary | Local history + JSON export |
+| Affirm | Daily affirmation mirror |
 
 ### Local run
 
@@ -23,7 +28,7 @@ npm install
 npm start
 ```
 
-Open http://localhost:3000 — log in, paste notes, click **Run**.
+Open http://localhost:3000 — log in, explore the palace rooms.
 
 `API_KEY` is read **only on the server**. The browser never sees it.
 

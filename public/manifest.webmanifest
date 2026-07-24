@@ -1,0 +1,23 @@
+{
+  "name": "Kitili Princess Palace",
+  "short_name": "Palace Bot",
+  "description": "Morning board, five to-dos, wrap-ups, focus timer & sparkles.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff0f7",
+  "theme_color": "#ff6fae",
+  "icons": [
+    {
+      "src": "/art/palace-castle.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/art/pony-princess.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

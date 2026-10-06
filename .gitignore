@@ -6,3 +6,4 @@ notes/*
 
 # Local Netlify folder (legacy static deploy)
 .netlify
+!notes/2026-10-06.md

@@ -12,6 +12,7 @@ Your daily thinking partner. Keep notes in `notes/`, get automatic end-of-day su
 | Daily Wrap-Up skill | `.claude/skills/daily-wrap-up/SKILL.md` |
 | Loop schedule (6pm weekdays) | `LOOPS.md` |
 | Hook config | `.claude/settings.json` |
+| Loop task board | `tasks.json` (waiting → working → done) |
 
 ## Quick rules
 
